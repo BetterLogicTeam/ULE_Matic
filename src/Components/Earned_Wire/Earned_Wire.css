@@ -1,0 +1,9 @@
+.referral-top{
+    margin-top: 0px;
+}
+
+@media screen and (max-width:1000px) {
+    .referral-top{
+        margin-top: 15px;
+    }
+    }

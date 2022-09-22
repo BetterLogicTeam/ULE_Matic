@@ -1,0 +1,25 @@
+.bg-b {
+    background-image: linear-gradient(90deg, rgb(11, 22, 149), rgb(189, 39, 197)) !important;
+}
+.bg-b {
+    background-color: #013779;
+    width: 100%;
+}
+.profit-dash{
+    margin-left: 0%;
+}
+
+@media screen and (max-width:1000px) {
+    .profit-dash{
+        margin-left: -6%;
+            margin-top: -12% !important;
+    }
+
+    .dash-1{
+        margin-left: -14px;
+    }
+    .all-income{
+        margin-left: -27px;
+
+    }
+}

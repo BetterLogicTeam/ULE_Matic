@@ -1,0 +1,256 @@
+.rrp{
+    margin: 8px 0px;
+    border: double 3px transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-radius: 10px;
+    background-image: linear-gradient(#390283, #390283), radial-gradient(circle at top left, #016eda, #d900c0);
+}
+.act-btn-1{
+    width: 79.333333%;
+    margin-left: 10%;
+}
+
+.act-avlbal{
+    margin-left: -16rem !important;
+
+}
+
+.p-3 {
+    padding: 0.5rem 1rem 1rem 1rem!important;
+}
+
+.head{
+    padding-bottom: 1rem!important;
+
+}
+
+.activation-bg{
+    background-color: rgb(57 2 131);
+    box-shadow: 0px 0px 1rem #dce1df;
+    margin-top: 19px;
+    margin-bottom: 25px;
+    border-radius: 11px;
+    padding: 10px;
+    border: double 3px transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-image: linear-gradient(#390283, #390283), radial-gradient(circle at top left, #016eda, #d900c0);
+}
+
+.input_width{
+    background: #480297;
+    border: 1px solid #fff;
+    color: #fff;
+
+}
+::placeholder{
+    color: white;
+}
+
+.upgrade-btn-act{
+    border: 1px solid #fff;
+    background: #480297;
+    color: #fff !important;
+    /* padding: 5px 41px 5px 44px; */
+    /* margin: 5px; */
+    width: 100%;
+    margin-left: 4px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.form5{
+    background: #480297;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.upgradtext{
+    color: #fff;
+    font-size: 30px !important;
+    border: double 3px transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-radius: 80px;
+    background-image: linear-gradient(#390283, #390283), radial-gradient(circle at top left, #016eda, #d900c0);
+}
+.yellowImg{
+    width: 8%;
+}
+
+.act-from{
+    width: 74%;
+    height: 48px;
+    border-radius: 7px;
+    margin-left: 13%;
+    /* background-color: white */
+}
+
+.upper-content{
+    border: double 3px transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    border-radius: 10px;
+    background-image: linear-gradient(#390283, #390283), radial-gradient(circle at top left, #016eda, #d900c0);
+}
+
+.input_and_text{
+    display: flex;
+    justify-content: space-around;
+}
+
+.input_width{
+    margin-left: 5rem;
+}
+
+.btn_here{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.act-width{
+    width: 53.333333%;
+}
+
+@media (min-width:760px) and (max-width:1000px) {
+.upgrade-btn-act{
+    width: 41%;
+    position: fixed;
+    margin-left: -11%;
+}
+
+.btm{
+    margin-bottom: 40px;
+
+}
+
+.act-bb-btn{
+    margin-left: 1%;
+    width: 39%;
+}
+
+}
+
+
+ @media screen and (max-width:1000px) {
+    .act-width {
+        width: 57.333333%;
+    }
+    .upgradtext{
+        margin-bottom: 10px;
+    }
+
+    .activation-bg{
+        padding: 0px 23px;
+    }
+
+    .head {
+        padding-bottom: 0.5rem!important;
+    }
+.upgrade-btn-act{
+    height: 48px;
+
+}
+.yellowImg{
+    width: 14%;
+}
+    .input_and_text{
+        display: flex;
+        flex-direction: inherit;
+margin-left: 49%;
+        justify-content: center;
+        align-items: baseline;
+    }
+    
+    .input_width {
+        margin-left: 0rem;
+    }
+
+    .act-from{
+        width: 88%;
+        height: 48px;
+        border-radius: 7px;
+        margin-left: 7%;
+        /* background-color: white */
+    }
+
+
+    .act-inpt{
+        width: 48%;
+    margin-left: -111%;
+    }
+    .act-avlbal {
+        margin-left: 0.5rem !important;
+    }
+
+    .act-btn-1 {
+        width: 96.333333%;
+        margin-left: 2%;
+    }
+    
+}
+
+
+@media (min-width:530px) and (max-width: 550px){
+.yellowImg {
+    width: 9%;
+}
+}
+
+
+@media (min-width:1001px) and (max-width: 1050px){
+    .yellowImg {
+        width: 9%;
+    }
+    .upgrade-btn-act{
+        width: 153%;
+        position: absolute;
+        margin-left: -33.2%;
+        height: 35px;
+
+    }
+
+    .btm{
+        margin-bottom: 30px;
+    
+    }
+
+    .act-width {
+        width: 60.333333%;
+    }
+    .input_width {
+        margin-left: 1rem;
+    }
+    .head{
+        margin-left: -22px;
+
+    }
+    .act-from{
+        height: 35px;
+
+    }
+    .act-bb-btn{
+        width: 91%;
+        margin-left: 1%;
+    }
+    }
+
+    @media screen and (max-width:290px) {
+        .input_width {
+            margin-left: -1.2rem;
+        }
+
+        .act-inpt{
+            margin-left: -113%;
+
+        }
+
+        .act-avlbal {
+            margin-left: 0.5rem !important;
+            width: 65%;
+
+        }
+    }

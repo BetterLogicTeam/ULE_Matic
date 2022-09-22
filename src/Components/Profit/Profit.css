@@ -1,0 +1,28 @@
+.half{
+    width: 50%;
+}
+
+.profit-heit{
+height: 532px;
+width: 107%;
+
+}
+
+.top-margin{
+    width: 129%;
+    margin-left: -30%;
+    margin-top: 54%;
+}
+
+@media screen and (max-width:1000px) {
+    .profit-heit{
+        height: 100%;
+        }
+     .top-margin {
+            width: 83%;
+            margin-left: 11%;
+            margin-top: 14%;
+            font-size: x-large;
+        }
+        
+    }

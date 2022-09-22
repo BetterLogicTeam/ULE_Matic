@@ -1,0 +1,9 @@
+@media screen and (max-width:1000px) {
+    .selectlevel{
+        width: 55%;
+    }
+    
+    .selectpool{
+        width: 55%;
+    }
+}

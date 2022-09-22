@@ -1,0 +1,13 @@
+.char-joining{
+    transform: translateX(-10px);
+}
+.heit{
+height: 110%;
+}
+
+@media screen and (max-width:1000px) {
+    .heit{
+        height: 100%;
+        width: 108%;
+        }
+    }

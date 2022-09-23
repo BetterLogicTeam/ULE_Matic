@@ -27,20 +27,13 @@ export default function Registration_with_BNB({ notify }) {
     setloader(true)
 
     console.log('position', position)
-    // let res1 = await axios.get(`https://ulematic-api.herokuapp.com/login?id='${address}'`)
-    // console.log('login_data before registration', res1.data.data)
-    // if (res1.data?.data !== 0) {
-    //     localStorage.setItem('isAuthenticated', true)
-    //     localStorage.setItem('user', JSON.stringify(res1.data.data))
-    //     toast.success('Login Successfully')
-  
-    //     navigate('/Dashboard/Home')
-    // } else {
+    
       let res = await axios.post('https://ulematic-api.herokuapp.com/registration', {
         sid: uid,
         accountnumber: address,
         position: position,
         amount: 10,
+        paymentType:"BNB",
         traxn: sellCall,
         // traxn: "0x2636a0fa8327fdad7c0441b038838749cec83211bdbe955d278fbc58e1d1bace"
       })
@@ -260,7 +253,7 @@ export default function Registration_with_BNB({ notify }) {
                         <div class="spinner-border text-secondary" role="status">
                           <span class="visually-hidden">Loading...</span>
                         </div>
-                      )}{' '}
+                      )}
                       Proceed
                     </button>
                     {/* <br /> */}

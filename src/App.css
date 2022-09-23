@@ -189,6 +189,7 @@ background-color: rgb(172, 172, 172);
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, .7);
+  z-index: 1000 !important;
 }
 .matrixtreedrop{
   width: fit-content;

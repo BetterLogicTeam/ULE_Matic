@@ -70,7 +70,7 @@ function CollapsibleExample() {
               </div>
               </Nav.Link> */}
           <Nav className="mt-2 emn">
-            <Nav.Link href="#login" className="text-white">
+            <Nav.Link  className="text-white">
               <Link to="/Login_main">
                 <span className="wallet">
                   <FaWallet></FaWallet>
@@ -78,14 +78,22 @@ function CollapsibleExample() {
                 Login
               </Link>
             </Nav.Link>
-            {/* <Nav.Link href="#register" className="text-white"> */}
-              <Link to="#" className="text-white text-white-1">
+            <Nav.Link  className="text-white">
+              <Link to="/Register_with_Matic">
+                <span className="wallet">
+                  <FaWallet></FaWallet>
+                </span>
+                Register
+              </Link>
+            </Nav.Link>
+            {/* <Nav.Link  className="text-white">
+              <Link to="/Register_with_Matic" className="text-white text-white-1">
               <span className="wallet">
                 <FaWallet></FaWallet>
               </span>
+              Register */}
 
-
-              <div class="dropdown">
+              {/* <div class="dropdown">
                 <a class=" dropdown-toggle register_btn" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   Register
                 </a>
@@ -108,10 +116,10 @@ function CollapsibleExample() {
                     </li>
 
                 </ul>
-              </div>
+              </div> */}
 
-              </Link>
-            {/* </Nav.Link> */}
+              {/* </Link>
+            </Nav.Link> */}
             <Nav.Link href="#pricing">
               <Link to="/Login_main">
                 <img src="metamaskU.png" width="40px" alt="" />

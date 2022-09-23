@@ -17,6 +17,8 @@ function Register_main({ notify }) {
     let [ule, setule] = useState("")
     let [uid, setuid] = useState("");
     const [address, setaddress] = useState('');
+    const [isLoading, setIsLoading] = useState(false)
+
     const [connected, setconnected] = useState('MetaMask is not connected..!..Wait...')
 
     const callapi = async (position, sellCall) => {
@@ -29,44 +31,47 @@ function Register_main({ notify }) {
                 accountnumber: address,
                 position: position,
                 amount: 10,
+                paymentType: "MATIC",
                 traxn: sellCall
                 // traxn: "0x2636a0fa8327fdad7c0441b038838749cec83211bdbe955d278fbc58e1d1bace"
 
             });
+        setloader(true)
+
         console.log("reg_Api", res)
-        if (res.data.data == 'Accountnumber already exists in joinnow_temp !!') {
+        if (res.data.data == "waiting") {
+            console.log(res.data)
+            // localStorage.setItem('user_Id', uid)
+            setloader(true)
+            setTimeout(() => {
+
+                callLoginApi()
+            }, 50000);
+            toast.success('Registered Successfully')
+
+        } else {
             toast.error('Account Already Resgistered with this ID')
             navigate('/Login_main')
 
         }
-        else if (res.data.success == true) {
-            console.log(res.data)
-            toast.success('Registered Successfully')
-            // localStorage.setItem('user_Id', uid)
 
-            setTimeout(() => {
-                callLoginApi()
-            }, 50000);
-
-        }
-        setloader(false)
+        // setloader(false)
     }
     const callLoginApi = async () => {
-        setloader(true)
+
+        // isLoading(true)
         console.log("address", address)
-        let res = await axios.get(`https://ulematic-api.herokuapp.com/login?id='${address}'`);
-        console.log("login_data", res)
+        let res = await axios.get(`https://ulematic-api.herokuapp.com/login?id='${address}'`); console.log("login_data", res)
         if (res.data.data !== 0) {
 
             localStorage.setItem("isAuthenticated", true);
             localStorage.setItem("user", JSON.stringify(res.data.data));
             toast.success('Login Successfully')
-
             navigate('/Dashboard/Home')
         }
         else {
             toast.error("Something went wrong ! ");
-
+            setloader(false)
         }
         setloader(false)
     }
@@ -98,37 +103,53 @@ function Register_main({ notify }) {
             setaddress(acc)
             setconnected('MetaMask is connected... Ready To Register')
 
-            ule = ule.toString()
-            console.log('what is contractvall ule', ule)
-
-            ule = window.web3.utils.toWei(ule)
-            console.log('what is  ule after towei', ule)
-
-            matic = matic.toString()
-            matic = window.web3.utils.toWei(matic)
             try {
-                let contract = await new window.web3.eth.Contract(contractAbi, contractAddress)
-                // console.log('what is  contract ', contract)
 
-                let token = await new window.web3.eth.Contract(tokenAbi, tokenAddress)
-                // console.log('what is  token', token)
-                try {
-                    let approveCall = await token.methods.approve(contractAddress, ule).send({ from: acc });
-                    console.log('what is  approveCall', approveCall)
+                let res = await axios.get(`https://ulematic-api.herokuapp.com/login?id='${address}'`); 
+                if (res.data.data !== 0) {
+
+                    localStorage.setItem("isAuthenticated", true);
+                    localStorage.setItem("user", JSON.stringify(res.data.data));
+                    toast.success('Account Already Resgistered with this ID')
+                    navigate('/Dashboard/Home')
                 }
-                catch (err) {
-                    console.log('what is error', err.message)
+                else {
+
+
+
+                    let contract = await new window.web3.eth.Contract(contractAbi, contractAddress)
+                    // console.log('what is  contract ', contract)
+
+                    let token = await new window.web3.eth.Contract(tokenAbi, tokenAddress)
+                    // console.log('what is  token', token)
+                    let balance = await token.methods.balanceOf(acc).call();
+                    balance = window.web3.utils.fromWei(balance)
+                    console.log('balance', balance)
+                    if (balance > ule) {
+
+                        ule = ule.toString()
+                        console.log('what is contractvall ule', ule)
+
+                        ule = window.web3.utils.toWei(ule)
+                        console.log('what is  ule after towei', ule)
+
+                        matic = matic.toString()
+                        matic = window.web3.utils.toWei(matic)
+
+                        let approveCall = await token.methods.approve(contractAddress, ule).send({ from: acc });
+                        console.log('what is  approveCall', approveCall)
+                        toast.success('Approved')
+                        let sellCall = await contract.methods.sell(ule).send({ from: acc, value: matic });
+                        toast.success('Transection Succesfull')
+                        sellCall = sellCall.transactionHash
+                        callapi(position, sellCall)
+                    } else {
+                        toast.error("Insufficient Fund")
+                    }
                 }
-
-
-                toast.success('Approved')
-                let sellCall = await contract.methods.sell(ule).send({ from: acc, value: matic });
-                toast.success('Transection Succesfull')
-                sellCall = sellCall.transactionHash
-                callapi(position, sellCall)
             }
             catch (err) {
-                // console.log("error while calling fuction sell", err)
+                console.log("error while calling fuction sell", err)
             }
 
         }
@@ -156,6 +177,8 @@ function Register_main({ notify }) {
         callMaticUrliApi();
 
         setloader(false)
+        setIsLoading(false)
+
     }, [])
 
     return (
@@ -208,7 +231,7 @@ function Register_main({ notify }) {
                                 <h4 className=' text-dark fs-5 my-3' id='pop-id'>Referral Confirmation</h4>
                                 <p>Your Current Referral ID is {uid}</p>
                                 <div className=' d-flex flex-row align-items-center justify-content-center my-2'>
-                                    <p className=' p-0  m-0'>Matic</p> <input className='input1 mx-2' defaultValue={matic} value={matic} disabled type={'number'} />
+                                    <p className=' p-0  m-0'>Matic</p> <input className='input1 mx-2 ' defaultValue={matic} value={matic} disabled type={'number'} />
                                     <p className=' p-0  m-0'>ULE</p> <input className='input1 mx-2' defaultValue={ule} value={ule} disabled type={'number'} />
                                 </div>
                                 <select className="boxset" name='position'>
@@ -234,7 +257,20 @@ function Register_main({ notify }) {
                                         modelRegister.classList.remove('d-flex')
                                         modelRegister.classList.add('d-none')
 
-                                    }}>Proceed</button>
+                                    }}
+                                        disabled={isLoading}
+
+                                    >
+                                        {isLoading && (
+                                            <div class="spinner-border text-secondary" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        )}
+
+
+
+
+                                        Proceed</button>
                                     <button className="btn bt loginbtn " onClick={() => {
                                         let modelRegister = document.querySelector('.bordd')
                                         let modelRegisterR = document.querySelector('.bord')

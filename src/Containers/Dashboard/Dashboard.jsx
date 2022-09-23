@@ -64,7 +64,7 @@ const Dashboard = () => {
   let user = localStorage.getItem('user')
   let ress = JSON.parse(user);
   let uId = ress?.uid;
-console.log("Usererrr",uId);
+console.log("Usererrr",user);
 
   const dispatch = useDispatch();
 
@@ -560,14 +560,14 @@ console.log("Usererrr",uId);
           {/* <Earned_USD data={{ earned_usd: `${earendUSD} USD`, total_usd: '652.9 ', text: "Participates have earned USD" }} /> */}
           <Affiliate
             data={{
-              earned_usd: `http://localhost:3000/Register_main?referrallink=${uId}&position=Left`,
+              earned_usd: `http://ulematicx.live/Register_with_Matic?referrallink=${uId}&position=Left`,
               total_usd: "0",
               text: "Affiliate Link Forum 1",
             }}
           />
            <Affiliate
             data={{
-              earned_usd: `http://localhost:3000/Register_main?referrallink=${uId}&position=Right`,
+              earned_usd: `http://ulematicx.live/Register_with_Matic?referrallink=${uId}&position=Right`,
               total_usd: "0",
               text: "Affiliate Link Forum 2",
             }}

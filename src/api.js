@@ -35,7 +35,7 @@ const changeNetwork = async ({ networkName }) => {
       method: "wallet_switchEthereumChain",
       params: [
         {
-          chainId: '137'
+          chainId: '0x137'
         },
       ],
     });

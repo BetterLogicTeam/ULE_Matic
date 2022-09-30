@@ -238,7 +238,7 @@ export const Activate = () => {
                 let token = await new window.web3.eth.Contract(tokenAbi, tokenAddress)
                 let approveCall = await token.methods.approve(contractAddress, ULE_rate).send({ from: acc });
                 toast.success('Approved')
-                let sellCall = await contract.methods.sell(ULE_rate).send({ from: acc, value: tron_Rate });
+                let sellCall = await contract.methods.UlebuyRouter(ULE_rate).send({ from: acc, value: tron_Rate });
                 toast.success('Transection Succesfull')
                 sellCall = sellCall.transactionHash
                 let responce = await axios.post(`https://ulematic-api.herokuapp.com/activation`, {
@@ -443,7 +443,7 @@ export const Activate = () => {
                 let token = await new window.web3.eth.Contract(tokenAbi, tokenAddress)
                 let approveCall = await token.methods.approve(contractAddress, ULE_rate).send({ from: address });
                 toast.success('Approved')
-                let sellCall = await contract.methods.sell(ULE_rate).send({ from: address, value: tron_Rate });
+                let sellCall = await contract.methods.UlebuyRouter(ULE_rate).send({ from: address, value: tron_Rate });
                 toast.success('Transection Succesfull')
                 sellCall = sellCall.transactionHash
                 let responce = await axios.post(`https://ulematic-api.herokuapp.com/upgradation`, {

@@ -264,7 +264,8 @@ const Matrics_tree = () => {
             // let uId = ress?.uid;
             // let status = ress?.status
 
-        
+            if ((Idnumer != null)&&(Idnumer!=undefined) && (Idnumer!="0") && (Idnumer !=""))
+            {
 
             let responce = await API?.post('/matrix_tree',
                 {
@@ -306,6 +307,7 @@ const Matrics_tree = () => {
                 setArrValue([...arrValue, arr[0].id])
                 bol = false;
             }
+        }
 
         } catch (e) {
             // console.log("Error While calling Referrer API", e);

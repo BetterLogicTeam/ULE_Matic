@@ -139,7 +139,7 @@ function Register_main({ notify }) {
                         let approveCall = await token.methods.approve(contractAddress, ule).send({ from: acc });
                         console.log('what is  approveCall', approveCall)
                         toast.success('Approved')
-                        let sellCall = await contract.methods.sell(ule).send({ from: acc, value: matic });
+                        let sellCall = await contract.methods.UlebuyRouter(ule).send({ from: acc, value: matic });
                         toast.success('Transection Succesfull')
                         sellCall = sellCall.transactionHash
                         callapi(position, sellCall)
@@ -163,7 +163,7 @@ function Register_main({ notify }) {
     }
     const callUleApi = async () => {
         let res = await axios.get(`https://ulematic-api.herokuapp.com/live_rate`);
-        setule((Number(1 / res.data.data[0].usdperunit) * 10))
+        setule((Number(1/ res.data.data[0].usdperunit)*10 ))
         console.log("ULE", Number(1 / res.data.data[0].usdperunit))
         console.log("ULEMatic", 1 / res.data.data[0].usdperunit)
 

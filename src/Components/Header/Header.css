@@ -34,6 +34,10 @@
     .emn{
         text-align: center;
     }
+    .nav_div_reg{
+        display: flex;
+        justify-content: center;
+    }
 }
 
 @media (min-width:800px) and (max-width:1024px) {
@@ -69,6 +73,6 @@ width: 20%;
 margin-left: 33%;
 }
 .navbar_home{
-    padding:50px 5px 50px 5px !important
+    padding:20px 5px 20px 5px !important
 }
 }

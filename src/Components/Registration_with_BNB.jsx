@@ -35,44 +35,40 @@ export default function Registration_with_BNB({ notify }) {
         amount: 10,
         paymentType:"BNB",
         traxn: sellCall,
-        // traxn: "0x2636a0fa8327fdad7c0441b038838749cec83211bdbe955d278fbc58e1d1bace"
+        // traxn: "0x20938baa39acbdc75b1e6b192a1f4a9782d353c69ea25c80db09a89205d37125"
       })
- console.log("res after resgistration api ",res.data.data)
-      if (res.data.data == 'Accountnumber already exists in joinnow_temp !!') {
-        toast.error('Account Already Resgistered with this ID')
-        navigate('/Dashboard/Home')
-      } else if (res.data.success == true) {
+
+      if (res.data.data == "waiting") {
         console.log(res.data)
-        toast.success('Registered Successfully')
         // localStorage.setItem('user_Id', uid)
+        setloader(true)
         setTimeout(() => {
-          callLoginApi()
-        }, 50000)
-      }
-    // }
 
-    // console.log("reg_Api",res)
-    // console.log("reg_Api_data",res.data.data)
+            callLoginApi()
+        }, 60000);
+        toast.success('Registered Successfully')
 
-    setloader(false)
+    } else {
+        toast.error('Account Already Resgistered with this ID')
+        navigate('/Login_main')
+
+    }
+    
   }
   const callLoginApi = async () => {
-    setloader(true)
-    setIsLoading(true)
-    console.log('address', address)
+  
     let res = await axios.get(`https://ulematic-api.herokuapp.com/login?id='${address}'`)
     console.log('login_data', res)
     if (res.data.data !== 0) {
       localStorage.setItem('isAuthenticated', true)
       localStorage.setItem('user', JSON.stringify(res.data.data))
       toast.success('Login Successfully')
-
-    //   navigate('/Dashboard/Home')
+      navigate('/Dashboard/Home')
     } else {
       toast.error('Something went wrong ! ')
     }
     setloader(false)
-    setIsLoading(false)
+    
   }
   const ConnectToMetaMask = async () => {
     let acc = await loadWeb4()
@@ -87,7 +83,7 @@ export default function Registration_with_BNB({ notify }) {
   }
   const cotractCall = async (position) => {
     setloader(true)
-    setIsLoading(true)
+
     let acc = await loadWeb4()
     if (acc == 'No Wallet') {
       toast.error('No Wallet')
@@ -108,16 +104,19 @@ export default function Registration_with_BNB({ notify }) {
         let token = await new window.web3.eth.Contract(tokenAbi, tokenAddress)
         let approveCall = await token.methods.approve(contractAddressbnb, ule).send({ from: acc })
         toast.success('Approved')
-        let sellCall = await contract.methods.sell(ule).send({ from: acc, value: matic })
+        let sellCall = await contract.methods.UlebuyRouter(ule).send({ from: acc, value: matic })
         toast.success('Transection Succesfull')
         sellCall = sellCall.transactionHash
         callapi(position, sellCall)
+        setloader(false)
+
+        
       } catch (err) {
         console.log('error while calling fuction sell', err)
+        setloader(false)
+        
       }
     }
-    setloader(false)
-    setIsLoading(false)
   }
   const callMaticUrliApi = async () => {
     let res = await axios.get(`https://ulematic-api.herokuapp.com/live_rate_bnb`)
@@ -125,9 +124,9 @@ export default function Registration_with_BNB({ notify }) {
     console.log('BNB', Number(res.data.data[0].usdperunit) * 10)
   }
   const callUleApi = async () => {
-    let res = await axios.get(`https://ulematic-api.herokuapp.com/live_rate`)
-    setule((1 / Number(res.data.data[0].usdperunit)) * 10)
-    console.log('ULE', Number(1 / res.data.data[0].usdperunit) * 10)
+    let res = await axios.get(`https://ulematic-api.herokuapp.com/live_rate_Ule_bnb`)
+    setule(( Number(res.data.data[0].usdperunit)) * 10)
+    console.log('ULE',  res.data.data[0].usdperunit)
   }
 
   useEffect(() => {
@@ -228,10 +227,10 @@ export default function Registration_with_BNB({ notify }) {
                   </select>
                   <div className=" mt-4">
                     <button
-                      className="btn bt loginbtn px-1 mx-1 proc"
+                      className="btn bt loginbtn px-1 mx-1 mt-2 proc"
                       style={{ marginBottom: '10px' }}
                       onClick={async () => {
-                        callapi()
+                   
                         let position = document.getElementsByName('position')[0].value
                         await cotractCall(position)
 

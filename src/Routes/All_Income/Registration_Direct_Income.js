@@ -34,8 +34,8 @@ const Registration_Direct_Income = () => {
                     sr: index + 1,
                     amount: item?.income,
                     from_id: item?.uid,
-
-                    date: moment(item?.dd).format("M/D/YYYY h:m:s A")
+                    date: item?.dd
+                    // date: moment(item?.dd).format("M/D/YYYY h:m:s A")
                 });
 
 

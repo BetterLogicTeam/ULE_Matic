@@ -28,9 +28,18 @@ const Self_Address = () => {
             <div className="col-md-11 py-3">
             
                 <PagePath data={{ page_name: "Self Address", page_path: "Address / Self Address" }} />
+                <h4 className="text-white" style={{ marginTop: "100px",color : "white"}}>
+                    Wallet Address&nbsp;:&nbsp;
+                    <span style={{fontSize : "large"}}>                        
+                        <a href={`https://polygonscan.com/address/${address}`} 
+                        className="text-white" target="_blank">{address || "Connect Wallet"}
+                        </a>
+                    </span>
+                </h4>
 
-
-                <h5 className="text-white mt-5">Wallet Address : {(<a href={`https://tronscan.io/#/contract/${address}`} className="Txn_here" target="_blank">{address || "Connect Wallet"}</a>)}  </h5>
+                {/* <h5 className="text-white mt-5">Wallet Address : {(
+                <a href={`https://tronscan.io/#/contract/${address}`} 
+                className="Txn_here" target="_blank">{address || "Connect Wallet"}</a>)}  </h5> */}
 
 
             </div>

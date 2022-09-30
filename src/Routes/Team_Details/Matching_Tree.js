@@ -12,6 +12,7 @@ import './Matching.css';
 import { API } from '../../Redux/actions/API'
 import { ListItemSecondaryAction } from "@material-ui/core";
 import Spinner from '../../Components/Spinner/Spinner'
+import { TbChevronDownLeft } from "react-icons/tb";
 let gobackClicked = false;
 let bol = true;
 const Matching_Tree = () => {
@@ -38,8 +39,8 @@ const Matching_Tree = () => {
         // arrValue.push(value)
     }
     function popoutvalue() {
-        setloader(true)
         if (arrValue.length == 0 || arrValue.length == 1) {
+            setloader(true)
             arrValue.pop()
             arrValue.unshift(userdata[0].id)
             gobackClicked = true;
@@ -314,7 +315,12 @@ const Matching_Tree = () => {
             // let ress = JSON?.parse(user);
             // let uId = ress?.uid;
             // let status = ress?.status
-            if (Idnumber == uId || gobackClicked == true) {
+            
+            if ((Idnumber != null)&&(Idnumber!=undefined) && (Idnumber!="0") && (Idnumber !=""))
+            {
+
+            
+            if (Idnumber == uId || gobackClicked == true ) {
                 setloader(true)
 
                 let responce = await API?.post('/binary_tree', {
@@ -896,7 +902,7 @@ const Matching_Tree = () => {
                 })
             }
 
-
+        }
 
 
 
@@ -904,8 +910,9 @@ const Matching_Tree = () => {
             console.log("Error While calling Referrer API", e);
         }
         setloader(false)
-
     }
+
+    
 
     const onhover = (x) => {
 

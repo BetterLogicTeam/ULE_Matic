@@ -35,22 +35,14 @@ const Direct_Leg_Business = () => {
 
                 arr?.push({
                     sr: index + 1,
-                    package: item?.package,
-
-
-                    investment: item?.selfbv,
+                    // package: item?.package,
                     user_id: item?.uid,
-                    date: item?.edate,
-                    team_business: item?.teambv ,
+                    investment: item?.selfbv,
+                    team_business: item?.teambv,
                     group_business: item?.gbv 
-
-
+                    // date: item?.edate,
                 });
-
-
-
-            }
-            )
+            })
             console.log("responce", arr);
 
             setreferralApi(arr)
@@ -73,16 +65,16 @@ const Direct_Leg_Business = () => {
         cols: [
             { Header: 'S.No', accessor: 'sr' },
             { Header: 'User ID', accessor: 'user_id' },
-            { Header: 'Investment', accessor: 'investment' },
+            { Header: 'Self Investment', accessor: 'investment' },
             { Header: 'Team Business', accessor: 'team_business' },
             { Header: 'Group Business', accessor: 'group_business' }
 
         ],
         rows: [
-            { sr: '1', user_id: '549414', investment: '25500.00', team_business: '1233' },
-            { sr: '2', user_id: '549414', investment: '25500.00', team_business: '1233' },
-            { sr: '3', user_id: '549414', investment: '25500.00', team_business: '1233' },
-            { sr: '4', user_id: '549414', investment: '25500.00', team_business: '1233' },
+            { sr: '1', user_id: '549414', investment: '25500.00', team_business: '1233', group_business: '1233' },
+            { sr: '2', user_id: '549414', investment: '25500.00', team_business: '1233', group_business: '1233' },
+            { sr: '3', user_id: '549414', investment: '25500.00', team_business: '1233', group_business: '1233' },
+            { sr: '4', user_id: '549414', investment: '25500.00', team_business: '1233', group_business: '1233' },
         ]
     });
     return (

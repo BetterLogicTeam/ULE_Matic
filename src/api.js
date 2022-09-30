@@ -29,26 +29,28 @@ const networks = {
 };
 
 const changeNetwork = async ({ networkName }) => {
-  try {
-    if (!window.ethereum) throw new Error("No crypto wallet found");
-    await window.ethereum.request({
-      method: "wallet_switchEthereumChain",
-      params: [
-        {
-          chainId: '0x137'
-        },
-      ],
-    });
-  } catch (err) {
-    await window.ethereum.request({
-      method: "wallet_addEthereumChain",
-      params: [
-        {
-          ...networks[networkName]
-        },
-      ],
-    });
-    console.log("not found");
+  if (window.ethereum.networkVersion !== chainId) {
+    try {
+      await window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: window.web3.utils.toHex(chainId) }]
+      });
+    } catch (err) {
+        // This error code indicates that the chain has not been added to MetaMask
+      if (err.code === 4902) {
+        await window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainName: 'Polygon Mainnet',
+              chainId: window.web3.utils.toHex(chainId),
+              nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' },
+              rpcUrls: ['https://polygon-rpc.com/']
+            }
+          ]
+        });
+      }
+    }
   }
 };
 

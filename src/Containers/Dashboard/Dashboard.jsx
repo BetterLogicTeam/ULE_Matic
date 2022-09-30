@@ -58,7 +58,7 @@ const Dashboard = () => {
   const [levelincome, setLevelincome] = useState(0);
   const [rewardName, setRewardName] = useState();
 
-
+const [valuea, setvaluea] = useState("1")
   const dashboard = useSelector((state) => state?.dashboard);
   // const user = localStorage.getItem("user");
   let user = localStorage.getItem('user')
@@ -86,7 +86,8 @@ console.log("Usererrr",user);
   }, []);
 
   const DashboardAPI = async () => {
-
+    let a=4;
+    setvaluea(a )
 
     try {
 
@@ -165,7 +166,7 @@ console.log("Usererrr",user);
 
 
       setallParticipants(res?.TotalMembers)
-      setjoined_last_24_hour(res?.NewToday)
+      setjoined_last_24_hour(res?.TotalMembersActive)
       // {dashboard?.allParticipants?.all_participants
       //   ? dashboard?.allParticipants?.all_participants
       //   : 0}
@@ -557,19 +558,20 @@ console.log("Usererrr",user);
             }} opt={earned_wire} />
 
         
+        <div>{valuea}</div>
           {/* <Earned_USD data={{ earned_usd: `${earendUSD} USD`, total_usd: '652.9 ', text: "Participates have earned USD" }} /> */}
           <Affiliate
             data={{
               earned_usd: `http://ulematicx.live/Register_with_Matic?referrallink=${uId}&position=Left`,
               total_usd: "0",
-              text: "Affiliate Link Forum 1",
+              text: "Affiliate Link Forum A",
             }}
           />
            <Affiliate
             data={{
               earned_usd: `http://ulematicx.live/Register_with_Matic?referrallink=${uId}&position=Right`,
               total_usd: "0",
-              text: "Affiliate Link Forum 2",
+              text: "Affiliate Link Forum B",
             }}
           />
         </div>

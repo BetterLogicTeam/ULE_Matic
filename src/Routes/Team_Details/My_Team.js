@@ -38,13 +38,22 @@ const My_Team = () => {
           package: item?.package,
           remark: item?.status,
           amount: item?.income,
-          id: (item?.user_id).lengt>8 ? item?.user:item?.user_id?.substring(0, 4) + "..." + item?.user_id?.substring(item?.user_id?.length - 4),
-        //   id: item?.user_id?.substring(0, 4) + "..." + item?.user_id?.substring(item?.user_id?.length - 4),
-         
+          id: item?.uid,
           date_time: item?.edate,
-          pkg: `${item.packagename}`,
-
+          pkg:  item.package ? `${item.package}` : '0 USD', //`${item.package}`,
           activation_date: item?.top_update,
+
+        //   sr: index + 1,
+        //   package: item?.package,
+        //   remark: item?.status,
+        //   amount: item?.income,
+        //   id: (item?.user_id).lengt>8 ? item?.user:item?.user_id?.substring(0, 4) + "..." + item?.user_id?.substring(item?.user_id?.length - 4),
+        // //   id: item?.user_id?.substring(0, 4) + "..." + item?.user_id?.substring(item?.user_id?.length - 4),
+         
+        //   date_time: item?.edate,
+        //   pkg: `${item.packagename}`,
+
+        //   activation_date: item?.top_update,
         })
       })
       console.log('responce', arr)
@@ -82,9 +91,9 @@ const My_Team = () => {
           package: item?.package,
           remark: item?.status,
           amount: item?.income,
-          id: item?.user_id,
+          id: item?.uid,
           date_time: item?.edate,
-          pkg: `${item.packagename}`,
+          pkg:  item.package ? `${item.package}` : '0 USD', //`${item.package}`,
           activation_date: item?.top_update,
         })
       })

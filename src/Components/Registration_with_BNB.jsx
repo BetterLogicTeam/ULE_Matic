@@ -43,7 +43,6 @@ export default function Registration_with_BNB({ notify }) {
         // localStorage.setItem('user_Id', uid)
         setloader(true)
         setTimeout(() => {
-
             callLoginApi()
         }, 60000);
         toast.success('Registered Successfully')
